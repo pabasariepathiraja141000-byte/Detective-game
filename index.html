@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Case No. 1147: The Blackwood Ledger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ============ TITLE SCREEN ============ -->
+  <section id="screen-title" class="screen">
+    <div class="folder">
+      <div class="stamp stamp-classified">CONFIDENTIAL</div>
+      <div class="eyebrow">METROPOLITAN INVESTIGATIONS DIVISION</div>
+      <h1 class="case-title">CASE No. 1147</h1>
+      <h2 class="case-subtitle">The Blackwood Ledger</h2>
+      <p class="case-brief">
+        Lord Edgar Blackwood was found dead in his study at eleven o'clock
+        last night. Four people were in the house. One of them is lying.
+      </p>
+      <p class="case-brief small">
+        Search the manor for evidence, piece together the order of events,
+        and name the killer before the file goes cold.
+      </p>
+      <button id="btn-begin" class="btn btn-stamp">OPEN CASE FILE</button>
+    </div>
+  </section>
+
+  <!-- ============ HUB / MANOR MAP ============ -->
+  <section id="screen-hub" class="screen hidden">
+    <header class="topbar">
+      <div class="topbar-title">BLACKWOOD MANOR — FLOOR PLAN</div>
+      <div class="topbar-right">
+        <div id="evidence-counter" class="pill">EVIDENCE 0 / 6</div>
+        <button id="btn-notebook" class="btn btn-small">NOTEBOOK</button>
+      </div>
+    </header>
+
+    <div class="blueprint" id="blueprint">
+      <!-- room nodes injected by JS -->
+    </div>
+
+    <button id="btn-solve" class="btn btn-stamp btn-solve hidden">SOLVE THE CASE</button>
+  </section>
+
+  <!-- ============ ROOM VIEW ============ -->
+  <section id="screen-room" class="screen hidden">
+    <header class="topbar">
+      <button id="btn-room-back" class="btn btn-small">◂ MANOR</button>
+      <div class="topbar-title" id="room-title">ROOM</div>
+      <button id="btn-notebook-2" class="btn btn-small">NOTEBOOK</button>
+    </header>
+    <p class="room-flavor" id="room-flavor"></p>
+    <div class="room-scene" id="room-scene">
+      <!-- hotspots injected by JS -->
+    </div>
+    <div id="clue-toast" class="clue-toast hidden">
+      <div class="clue-toast-icon" id="clue-toast-icon">🔍</div>
+      <div class="clue-toast-text">
+        <div class="clue-toast-name" id="clue-toast-name"></div>
+        <div class="clue-toast-desc" id="clue-toast-desc"></div>
+      </div>
+      <button id="clue-toast-close" class="btn btn-small">CLOSE</button>
+    </div>
+  </section>
+
+  <!-- ============ CORKBOARD (ordering puzzle) ============ -->
+  <section id="screen-corkboard" class="screen hidden">
+    <header class="topbar">
+      <div class="topbar-title">RECONSTRUCT THE NIGHT</div>
+      <button id="btn-cork-back" class="btn btn-small">◂ MANOR</button>
+    </header>
+    <p class="room-flavor">
+      Tap a card, then tap a numbered pin to place it. Arrange all six in
+      the order the night actually happened.
+    </p>
+    <div class="corkboard" id="corkboard">
+      <div class="cork-slots" id="cork-slots"></div>
+      <svg id="cork-strings" class="cork-strings"></svg>
+    </div>
+    <div class="cork-tray" id="cork-tray"></div>
+    <div class="cork-actions">
+      <button id="btn-check-order" class="btn btn-stamp">REVEAL THE TRUTH</button>
+      <div id="cork-feedback" class="cork-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ============ ACCUSATION ============ -->
+  <section id="screen-accusation" class="screen hidden">
+    <header class="topbar">
+      <div class="topbar-title">FINAL REPORT</div>
+    </header>
+    <div class="report">
+      <p class="report-lead">The timeline is clear. Now name it for the record.</p>
+
+      <div class="report-field">
+        <div class="report-label">THE KILLER</div>
+        <div class="choice-row" id="choice-suspect"></div>
+      </div>
+      <div class="report-field">
+        <div class="report-label">THE WEAPON</div>
+        <div class="choice-row" id="choice-weapon"></div>
+      </div>
+      <div class="report-field">
+        <div class="report-label">THE MOTIVE</div>
+        <div class="choice-row" id="choice-motive"></div>
+      </div>
+
+      <button id="btn-submit-report" class="btn btn-stamp">CLOSE THE CASE</button>
+      <div id="report-feedback" class="cork-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ============ ENDING ============ -->
+  <section id="screen-ending" class="screen hidden">
+    <div class="folder">
+      <div class="stamp" id="ending-stamp">CASE CLOSED</div>
+      <h1 class="case-title small" id="ending-title">CASE CLOSED</h1>
+      <p class="case-brief" id="ending-text"></p>
+      <div class="ending-stats" id="ending-stats"></div>
+      <button id="btn-again" class="btn btn-stamp">NEW CASE</button>
+    </div>
+  </section>
+
+  <!-- ============ NOTEBOOK OVERLAY ============ -->
+  <div id="notebook" class="notebook hidden">
+    <div class="notebook-page">
+      <div class="notebook-header">
+        <div class="topbar-title">DETECTIVE'S NOTEBOOK</div>
+        <button id="btn-notebook-close" class="btn btn-small">CLOSE</button>
+      </div>
+      <div id="notebook-list" class="notebook-list"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
