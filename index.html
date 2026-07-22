@@ -19,11 +19,19 @@
       <h2 class="case-subtitle">The Blackwood Ledger</h2>
       <p class="case-brief">
         Lord Edgar Blackwood was found dead in his study at eleven o'clock
-        last night. Four people were in the house. One of them is lying.
+        last night. Four people were in the house when it happened:
       </p>
+      <ul class="suspect-intro-list">
+        <li><b>Eleanor Blackwood</b> — his estranged wife</li>
+        <li><b>Julian Reyes</b> — the butler</li>
+        <li><b>Dr. Simon Ashcroft</b> — the family physician</li>
+        <li><b>Maggie Voss</b> — his niece and the estate's gardener</li>
+      </ul>
       <p class="case-brief small">
-        Search the manor for evidence, piece together the order of events,
-        and name the killer before the file goes cold.
+        Each of them has already given a statement about where they were
+        that night. Search the manor for evidence, check their whereabouts
+        against what you find, piece together the order of events, and
+        name the killer before the file goes cold.
       </p>
       <button id="btn-begin" class="btn btn-stamp">OPEN CASE FILE</button>
     </div>
@@ -35,6 +43,7 @@
       <div class="topbar-title">BLACKWOOD MANOR — FLOOR PLAN</div>
       <div class="topbar-right">
         <div id="evidence-counter" class="pill">EVIDENCE 0 / 6</div>
+        <button id="btn-suspects" class="btn btn-small">SUSPECTS</button>
         <button id="btn-notebook" class="btn btn-small">NOTEBOOK</button>
       </div>
     </header>
@@ -51,7 +60,10 @@
     <header class="topbar">
       <button id="btn-room-back" class="btn btn-small">◂ MANOR</button>
       <div class="topbar-title" id="room-title">ROOM</div>
-      <button id="btn-notebook-2" class="btn btn-small">NOTEBOOK</button>
+      <div class="topbar-right">
+        <button id="btn-suspects-2" class="btn btn-small">SUSPECTS</button>
+        <button id="btn-notebook-2" class="btn btn-small">NOTEBOOK</button>
+      </div>
     </header>
     <p class="room-flavor" id="room-flavor"></p>
     <div class="room-scene" id="room-scene">
@@ -60,8 +72,10 @@
     <div id="clue-toast" class="clue-toast hidden">
       <div class="clue-toast-icon" id="clue-toast-icon">🔍</div>
       <div class="clue-toast-text">
+        <div class="clue-toast-kicker" id="clue-toast-kicker">EVIDENCE LOGGED</div>
         <div class="clue-toast-name" id="clue-toast-name"></div>
         <div class="clue-toast-desc" id="clue-toast-desc"></div>
+        <div class="clue-toast-thought" id="clue-toast-thought"></div>
       </div>
       <button id="clue-toast-close" class="btn btn-small">CLOSE</button>
     </div>
@@ -85,6 +99,8 @@
     <div class="cork-actions">
       <button id="btn-check-order" class="btn btn-stamp">REVEAL THE TRUTH</button>
       <div id="cork-feedback" class="cork-feedback"></div>
+      <button id="btn-hint" class="btn btn-small">NEED A NUDGE?</button>
+      <div id="cork-hint" class="cork-hint"></div>
     </div>
   </section>
 
@@ -133,6 +149,17 @@
         <button id="btn-notebook-close" class="btn btn-small">CLOSE</button>
       </div>
       <div id="notebook-list" class="notebook-list"></div>
+    </div>
+  </div>
+
+  <!-- ============ SUSPECTS OVERLAY ============ -->
+  <div id="suspects" class="notebook hidden">
+    <div class="notebook-page">
+      <div class="notebook-header">
+        <div class="topbar-title">SUSPECT STATEMENTS</div>
+        <button id="btn-suspects-close" class="btn btn-small">CLOSE</button>
+      </div>
+      <div id="suspects-list" class="notebook-list"></div>
     </div>
   </div>
 

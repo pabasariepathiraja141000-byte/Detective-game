@@ -177,6 +177,20 @@ html, body {
 }
 .case-brief.small { font-size: 15px; color: var(--ink-soft); }
 
+.suspect-intro-list {
+  text-align: left;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  line-height: 1.9;
+}
+.suspect-intro-list li {
+  border-bottom: 1px solid rgba(43,35,32,0.15);
+  padding: 3px 0;
+}
+.suspect-intro-list b { color: var(--brick); }
+
 .ending-stats {
   font-family: 'Special Elite', monospace;
   font-size: 12px;
@@ -312,6 +326,17 @@ html, body {
 }
 .clue-toast-icon { font-size: 26px; flex: none; }
 .clue-toast-text { flex: 1; }
+.clue-toast-kicker {
+  display: inline-block;
+  font-family: 'Special Elite', monospace;
+  font-size: 10.5px;
+  letter-spacing: 1px;
+  padding: 3px 7px;
+  border-radius: 2px;
+  margin-bottom: 6px;
+}
+.clue-toast-kicker.is-evidence { background: var(--brick); color: var(--parchment); }
+.clue-toast-kicker.is-herring { background: var(--paper-dark); color: var(--ink-soft); border: 1px dashed var(--ink-soft); }
 .clue-toast-name {
   font-family: 'Special Elite', monospace;
   font-size: 13px;
@@ -319,6 +344,14 @@ html, body {
   margin-bottom: 4px;
 }
 .clue-toast-desc { font-size: 14.5px; line-height: 1.45; }
+.clue-toast-thought {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--paper-line);
+  font-style: italic;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
 
 /* room scene background variants (per room, procedural) */
 .scene-study {
@@ -346,6 +379,74 @@ html, body {
   background:
     repeating-linear-gradient(0deg, rgba(176,141,79,0.08) 0 2px, transparent 2px 22px),
     linear-gradient(180deg, #1a1815, #100e0c);
+}
+
+/* room set-dressing — pure CSS furniture, no image assets */
+.room-decor { position: absolute; inset: 0; pointer-events: none; }
+.decor-shelf {
+  position: absolute;
+  background: repeating-linear-gradient(90deg, #4a3420 0 8px, #6b4a30 8px 9px, #3a2818 9px 17px);
+  border: 2px solid #2a1c10;
+  border-radius: 2px;
+  opacity: 0.85;
+}
+.decor-shelf-row {
+  position: absolute; left: 0; right: 0; height: 13%;
+  background: repeating-linear-gradient(90deg, #4a3420 0 10px, #6b4a30 10px 12px, #3a2818 12px 22px);
+  opacity: 0.75;
+}
+.decor-shelf-row.top { top: 0; }
+.decor-shelf-row.bottom { bottom: 0; }
+.decor-desk {
+  position: absolute;
+  height: 16%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #5c4128, #2f2013);
+  border-top: 3px solid #7a5a34;
+  border-radius: 2px 2px 0 0;
+  opacity: 0.9;
+}
+.decor-rail {
+  position: absolute; left: 8%; right: 8%; height: 3px;
+  background: #3a2818;
+  display: flex; justify-content: space-around; align-items: flex-start;
+  opacity: 0.85;
+}
+.decor-pot {
+  display: inline-block; width: 26px; height: 26px; margin-top: 3px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #b08d4f, #4a3420);
+}
+.decor-pot.small { width: 18px; height: 18px; margin-top: 4px; }
+.decor-counter {
+  position: absolute; left: 0; right: 0; height: 15%;
+  background: linear-gradient(180deg, #3a3a33, #1c1c17);
+  border-top: 3px solid #55554a;
+  opacity: 0.85;
+}
+.decor-trellis {
+  position: absolute;
+  background:
+    repeating-linear-gradient(45deg, rgba(107,74,48,0.55) 0 3px, transparent 3px 18px),
+    repeating-linear-gradient(-45deg, rgba(107,74,48,0.55) 0 3px, transparent 3px 18px);
+  border: 2px solid rgba(107,74,48,0.6);
+  border-radius: 2px;
+}
+.decor-path {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 24%;
+  background: linear-gradient(180deg, transparent, rgba(150,140,110,0.14));
+}
+.decor-peg {
+  display: inline-block; width: 10px; height: 15px; margin-top: 3px;
+  background: #3a2818;
+  border-radius: 0 0 4px 4px;
+}
+.decor-glow {
+  position: absolute; width: 60px; height: 60px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,200,120,0.16), transparent 70%);
+}
+.decor-glow.moon {
+  background: radial-gradient(circle, rgba(220,225,255,0.18), transparent 70%);
 }
 
 /* ---------- CORKBOARD ---------- */
@@ -523,10 +624,53 @@ html, body {
   margin-bottom: 3px;
 }
 .note-entry .ev-desc { font-size: 15px; line-height: 1.4; }
-.notebook-empty { font-style: italic; color: var(--ink-soft); }
+.note-entry .ev-thought {
+  margin-top: 6px;
+  font-style: italic;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+.notebook-empty { font-style: italic; color: var(--ink-soft); margin-bottom: 16px; }
+.notebook-section-title {
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--brick);
+  border-bottom: 1px solid var(--paper-line);
+  padding-bottom: 4px;
+  margin: 4px 0 12px 0;
+}
+.notebook-section-title:not(:first-child) { margin-top: 20px; }
+
+.suspect-card-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 6px;
+}
+.suspect-avatar {
+  flex: none;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--navy-3);
+  color: var(--brass-bright);
+  border: 2px solid var(--brass);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Special Elite', monospace;
+  font-size: 13px;
+}
+.suspect-role { font-style: italic; font-size: 13px; color: var(--ink-soft); }
 
 /* ---------- scrollbars / misc ---------- */
 ::-webkit-scrollbar { width: 0; height: 0; }
+
+.cork-hint {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--parchment-dim);
+  text-align: center;
+  min-height: 16px;
+  max-width: 460px;
+}
+#btn-hint { margin-top: 2px; }
 
 @media (max-width: 420px) {
   .case-title { font-size: 26px; }
